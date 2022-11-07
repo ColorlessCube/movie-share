@@ -5,7 +5,7 @@ from flaskz.rest import ModelRestManager
 
 from config import config
 
-from . import sys_mgmt, main, api
+from . import sys_mgmt, static, api
 from .sys_mgmt import auth
 
 login_manager = LoginManager()
@@ -38,8 +38,8 @@ def create_app(config_name):
     model_rest_manager.init_app(app)
 
     # 注册api
-    main.init_app(app)
-    app.register_blueprint(main.main_bp, url_prefix='/')
+    static.init_app(app)
+    app.register_blueprint(static.static_bp, url_prefix='/')
     app.register_blueprint(api.api_bp, url_prefix='/api')
     app.register_blueprint(sys_mgmt.sys_mgmt_bp, url_prefix='/sys_mgmt')
 

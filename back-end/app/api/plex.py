@@ -57,8 +57,15 @@ def update_image():
     res, medias = Media.query_all()
     if res:
         for media in medias:
-            plex_file_download(media.thumb, '{}.thumb.jpg'.format(media.title))
-            plex_file_download(media.art, '{}.art.jpg'.format(media.title))
+            # pool = ThreadPoolExecutor(max_workers=current_app.config.get('MAX_DOWNLOAD_THREAD'))
+            # for media in medias:
+            #     pool.submit(plex_file_download, media.thumb, '{}.thumb.jpg'.format(media.id))
+            #     pool.submit(plex_file_download, media.art, '{}.art.jpg'.format(media.id))
+            # pool.shutdown()
+            if media.thumb:
+                plex_file_download(media.thumb, '{}.thumb.jpg'.format(media.id))
+            if media.art:
+                plex_file_download(media.art, '{}.art.jpg'.format(media.id))
     return create_response(True, '123')
 
 

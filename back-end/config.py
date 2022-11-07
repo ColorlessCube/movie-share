@@ -60,11 +60,12 @@ class DevelopmentConfig(Config):
     """
     SEND_FILE_MAX_AGE_DEFAULT = 0
     # FLASKZ_LOGGER_FILENAME = 'syslog.txt'
-    PLEX_BASE_URL = ''
-    PLEX_TOKEN = ''
-    PLEX_IMAGE_DIR = os.path.join(basedir, 'static')
+    PLEX_BASE_URL = 'http://alexful.com:32400'
+    PLEX_TOKEN = 'JuDsZ5R14e2hPesnqezG'
+    PLEX_IMAGE_DIR = os.path.join(basedir, 'app/assets')
     FLASKZ_DATABASE_URI = os.environ.get(
         'FLASKZ_DEV_DATABASE_URI') or 'sqlite:///./_sqlite/movie-share.db?check_same_thread=False'
+    MAX_DOWNLOAD_THREAD = 8
 
 
 class TestConfig(Config):
